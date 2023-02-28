@@ -6,9 +6,11 @@ import { UserContext } from "../contexts/user.context";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 import CardDropdown from "../Component/cart-dropdown/cart-dropdown.component";
 import "./navigation.styles.scss";
+import { CartContext } from "../contexts/cart.context";
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const { cartOpen } = useContext(CartContext);
 
   return (
     <Fragment>
@@ -21,7 +23,9 @@ const Navigation = () => {
             SHOP
           </Link>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>
+            <span className="nav-link" onClick={signOutUser}>
+              SIGN OUT
+            </span>
           ) : (
             <Link className="nav-link" to="/sign-in">
               SIGN IN
@@ -29,7 +33,7 @@ const Navigation = () => {
           )}
           <CardIcon />
         </div>
-        <CardDropdown />
+        {cartOpen  && <CardDropdown />}
       </div>
       <Outlet />
     </Fragment>
