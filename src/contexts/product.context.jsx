@@ -7,15 +7,15 @@ export const productContext = createContext({
 });
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState(SHOP_DATA);
 
-  useEffect(() => {
-    const getCategoriesMap = async () => {
-      const categoryMap = await getCategoriesAndDocuments();
-      setProducts(categoryMap);
-    };
-    getCategoriesMap();
-  });
+  // useEffect(() => {
+  //   const getCategoriesMap = async () => {
+  //     const categoryMap = await getCategoriesAndDocuments();
+  //     setProducts(categoryMap);
+  //   };
+  //   getCategoriesMap();
+  // });
 
 
 

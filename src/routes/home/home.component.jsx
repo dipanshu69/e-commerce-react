@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryList from "../../Component/category-list/category-list.component";
+import Directory from "../../Component/Directory/directory.component";
 
 const Home = () => {
   const categories = [
@@ -33,7 +33,7 @@ const Home = () => {
   
   return (
     <div>
-      <CategoryList categories={categories} />
+      <Directory categories={categories} />
     </div>
   );
 };
