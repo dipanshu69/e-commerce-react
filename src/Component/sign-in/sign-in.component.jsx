@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "../button/button.component";
+import Button, { Button_Type_Classes } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 import {
   signInWithGooglePopup,
@@ -22,14 +22,13 @@ const SignIn = () => {
   };
 
   const signInWithGoogle = async () => {
-   await signInWithGooglePopup();
-    
+    await signInWithGooglePopup();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     try {
-     await signInAuthUseWithEmailAndPassword(email, password);
+    try {
+      await signInAuthUseWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       alert(error.code);
@@ -66,7 +65,11 @@ const SignIn = () => {
           <Button type="submit" buttonType="inverted">
             Sign In
           </Button>
-          <Button type="button" onClick={signInWithGoogle} buttonType="google">
+          <Button
+            type="button"
+            onClick={signInWithGoogle}
+            buttonType={Button_Type_Classes.google}
+          >
             Google Sign In
           </Button>
         </div>
