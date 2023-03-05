@@ -1,0 +1,5 @@
+const PRODUCT_ACTION_TYPES = {
+    ADD_PRODUCT : "product/ADD_PRODUCT"
+};
+
+export default PRODUCT_ACTION_TYPES;
