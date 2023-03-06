@@ -1,30 +1,35 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import {
   AiFillCaretRight,
   AiFillCaretLeft,
   AiOutlineClose,
 } from "react-icons/ai";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItemToCart,
+  completeRemoveCheckOutItemFromCart,
+  removeCheckOutItemFromCart,
+} from "../../store/cart/cart.action.js";
+import { selectCartItems } from "../../store/cart/cart.selector.js";
 import "./checkout-item.styles.scss";
 
 const CheckOutItem = ({ CheckOutItem }) => {
-  const {
-    completeRemoveCheckOutItemFromCart,
-    removeCheckOutItemFromCart,
-    addItemToCart,
-  } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+
   const { imageUrl, name, quantity, price } = CheckOutItem;
 
-  const removeItem = () => completeRemoveCheckOutItemFromCart(CheckOutItem);
+  const removeItem = () =>
+    dispatch(completeRemoveCheckOutItemFromCart(cartItems, CheckOutItem));
 
   const showPrice = price * quantity;
 
   const handleClickToAdd = () => {
-    addItemToCart(CheckOutItem);
+    dispatch(addItemToCart(cartItems, CheckOutItem));
   };
 
   const handleClickToRemove = () => {
-    removeCheckOutItemFromCart(CheckOutItem);
+    dispatch(removeCheckOutItemFromCart(cartItems, CheckOutItem));
   };
 
   return (
